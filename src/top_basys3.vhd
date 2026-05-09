@@ -247,7 +247,7 @@ begin
 	
 	
 	
-    sign_disp : process (w_tdm_data,w_sevensego)
+    sign_disp : process (w_tdm_data,w_sevensego,w_state)
         begin
         
         if w_tdm_data = "1111" then
@@ -257,12 +257,15 @@ begin
         else 
             seg (6 downto 0) <= w_sevensego;
         end if;
+        if w_state = "0001" then
+            seg (6 downto 0) <= "1111111";
+        end if;
     end process sign_disp;
          
 
 	-- CONCURRENT STATEMENTS ----------------------------
 	led(3 downto 0) <= w_state;
 	led(15 downto 12) <= w_flags;
-	
+	led(11 downto 4) <= "00000000";
 	
 end top_basys3_arch;

@@ -74,7 +74,7 @@ register_proc : process (i_adv, i_reset)
         begin
         if i_reset = '1' then
             f_S <= "00";        -- reset state is load a 
-        elsif (i_adv = '1') then
+        elsif rising_edge(i_adv) then
             f_S <= f_S_next;    -- next state becomes current state
         end if;
     end process register_proc;
